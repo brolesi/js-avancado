@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="cards.css">
+  <style type="text/css">
+  body {
+        background: green;
+      }
+      
+      div {
+        float: left;
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+  </style>
+
+  <title></title>
+</head>
+
+<body>
+  <div id="card-board"></div><script type="text/javascript">
+if (!Array.prototype.shuffle) {
+  Array.prototype.shuffle = function() {
+  var len = this.length;
+  var i = len;
+   while (i--) {
+    var p = parseInt(Math.random()*len);
+    var t = this[i];
+    this[i] = this[p];
+    this[p] = t;
+  }
+  };
+  }
+  var Enum = {
+  numero: {1:'a', 2:'2', 3:'3', 4:'4', 5:'5', 6:'6', 7:'7', 8:'8', 9:'9', 10:'10', 11: 'j', 12:'q', 13:'k'},
+  naipe: {ouros: 0, copas: 1, espadas: 2, paus: 3},
+  }
+  var Resources = {
+  naipe: ['ouros',  'copas',  'espadas',  'paus']
+  }
+  var Card = function(valor, naipe)
+  {
+  this.valor = valor;
+  this.naipe = naipe;
+  this.classe = 'card-' + Enum.numero[this.valor] +  '-' + Resources.naipe[this.naipe.toString()];
+  }
+
+
+
+  </script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+</script><script type="text/javascript">
+  function generateCards(){
+    var cards = [];
+    $.each(Enum.naipe, function(_naipe){
+      $.each(Enum.numero, function(_numero){
+        cards.push(new Card(_numero, Enum.naipe[_naipe]));
+      });
+    });
+    return cards;
+  }
+
+  function drawCard(card)
+  {
+    return $('<div>').addClass(card.classe).addClass('card');
+  }
+
+$(document).ready(function(){
+    _cards = generateCards();
+    _cards.shuffle();
+    debugger;
+    for(c in _cards)
+    {
+      $('#card-board').append(drawCard(_cards[c]));
+    }
+  });
+
+  </script>
+</body>
+</html>

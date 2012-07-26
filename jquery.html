@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>
+</head>
+<body>
+<img src="" alt="[]" id="imagem_load" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript">
+  
+  var src='http://1.bp.blogspot.com/-rhUF9UTVI4g/TjcTWyqIaoI/AAAAAAAAAb0/Mrp06pDWkcI/s1600/Madagascar+Wallpapers_4.jpg'
+  //var src='http://1.bp.blogspot.com/--i4EIY4t70o/T66YLlESplI/AAAAAAAAAyY/c7SdTgsXjg8/s1600/Madagascar.jpg'
+  //var src='http://1.bp.blogspot.com/-rhUF9UTVI4g/TjcTWyqIaoI/AAAAAAAAAb0/Mrp06pDWkcI/s1600/Madagascar+Wallpapers_4.jpg'
+  
+  $(document).ready(function(){
+    _element = $('#imagem_load');
+    _element.attr('src', src);
+    var newDimensions = animateToMeasue(_element, 100);
+    _element.animate({'width': newDimensions.w, 'height': newDimensions.h});
+  });
+  
+  function animateToMeasue(element, maxMeasure)
+  {
+    var w = element.width();
+    var h = element.height();
+    var ratio = h / w;
+    var newH = null;
+    var newW = null;
+    if(ratio < 1)
+    {
+      newH = maxMeasure / ratio;
+      newW = maxMeasure;
+    }
+    if(ratio == 1)
+    {
+      newH = maxMeasure;
+      newW = maxMeasure;
+    }
+    if(ratio > 1)
+    {
+      newH = maxMeasure;
+      newW = maxMeasure * ratio;
+    }
+    return {'w': newW, 'h': newH};
+  }
+  </script>
+</body>
+</html>
